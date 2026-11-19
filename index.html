@@ -39,13 +39,13 @@
     z-index:-1;
   }
 
-  /* Navigation */
+  /* Navigation Bar */
   nav {
     position:fixed;
     top:0; width:100%;
     padding:18px 8%;
     display:flex;
-    justify-content:space-between;
+    justify-content:center;
     align-items:center;
     background:rgba(0,0,0,0.75);
     backdrop-filter:blur(15px);
@@ -54,24 +54,6 @@
   }
 
   .logo { color:#d4af37; font-size:22px; font-weight:bold; letter-spacing:2px; }
-
-  .nav-links a {
-    color:#aaa;
-    text-decoration:none;
-    margin-left:22px;
-    font-size:13px;
-    letter-spacing:0.5px;
-    padding-bottom:4px;
-    border-bottom:1px solid transparent;
-    transition:0.3s;
-    cursor:pointer;
-  }
-
-  .nav-links a:hover,
-  .nav-links a.active {
-    color:#d4af37;
-    border-bottom:1px solid #d4af37;
-  }
 
   /* Page system */
   .page-wrapper {
@@ -85,7 +67,7 @@
     padding:120px 8% 80px;
     flex-direction:column;
     align-items:center;
-    justify-content:flex-start;
+    justify-content:center;
   }
 
   .page.active {
@@ -98,8 +80,41 @@
     to { opacity:1; transform:translateY(0); }
   }
 
-  /* Hero */
-  .hero { justify-content:center; text-align:center; min-height:100vh; padding-top:100px; }
+  /* Cute Teddy Bear Styling */
+  .teddy-container {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    margin: 0 auto 15px;
+    animation: floatTeddy 3s ease-in-out infinite;
+  }
+
+  @keyframes floatTeddy {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(2deg); }
+  }
+
+  .cute-teddy {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 10px 20px rgba(212,175,55,0.3));
+  }
+
+  /* Floating Balloons near Teddy */
+  .balloon {
+    position: absolute;
+    font-size: 26px;
+    animation: floatBalloon 2.5s ease-in-out infinite alternate;
+  }
+  .balloon.left { top: -5px; left: -15px; animation-delay: 0.2s; }
+  .balloon.right { top: -10px; right: -15px; animation-delay: 0.7s; }
+
+  @keyframes floatBalloon {
+    0% { transform: translateY(0) rotate(-5deg); }
+    100% { transform: translateY(-8px) rotate(8deg); }
+  }
+
+  .hero { text-align:center; min-height:100vh; padding-top:80px; }
   .hero-content { max-width:900px; margin:auto; }
 
   .small-title {
@@ -107,66 +122,223 @@
     letter-spacing:5px;
     text-transform:uppercase;
     font-size:14px;
-    margin-bottom:25px;
+    margin-bottom:15px;
   }
 
   .hero h1 {
-    font-size:clamp(55px,10vw,120px);
-    line-height:0.95;
-    margin-bottom:25px;
+    font-size:clamp(30px, 4.5vw, 54px);
+    line-height:1.2;
+    margin-bottom:15px;
     background:linear-gradient(90deg,#fff,#d4af37,#fff);
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
     animation:shine 4s infinite linear;
     background-size:200%;
+    font-weight: bold;
   }
 
   @keyframes shine { 0%{background-position:0%;} 100%{background-position:200%;} }
 
-  .hero h2 { font-size:25px; font-weight:normal; color:#ccc; margin-bottom:35px; }
+  .hero h2 { font-size:24px; font-weight:normal; color:#ccc; margin-bottom:30px; }
   .heart { color:#d4af37; }
 
+  /* Glowing Gold Buttons */
   .gold-btn {
-    display:inline-block;
-    padding:14px 32px;
-    border:1px solid #d4af37;
-    color:#d4af37;
-    text-decoration:none;
-    border-radius:30px;
-    transition:0.4s;
-    letter-spacing:1px;
-    background:transparent;
-    font-family:Georgia,serif;
-    font-size:15px;
-    cursor:pointer;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 36px;
+    background: linear-gradient(135deg, #d4af37 0%, #aa7c11 100%);
+    color: #000;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 50px;
+    border: none;
+    transition: all 0.4s ease;
+    letter-spacing: 1.5px;
+    font-family: Georgia, serif;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.35);
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .gold-btn::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: 0.5s;
+    z-index: -1;
+  }
+
+  .gold-btn:hover::before {
+    left: 100%;
   }
 
   .gold-btn:hover {
-    background:#d4af37;
-    color:black;
-    box-shadow:0 0 30px rgba(212,175,55,0.5);
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 30px rgba(212, 175, 55, 0.6);
+    background: linear-gradient(135deg, #f3e5ab 0%, #d4af37 100%);
+    color: #000;
   }
 
   .gold-btn.ghost {
-    border-color:rgba(212,175,55,0.4);
-    color:#aaa;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(212, 175, 55, 0.5);
+    color: #d4af37;
+    box-shadow: none;
   }
-  .gold-btn.ghost:hover { color:black; }
+
+  .gold-btn.ghost:hover {
+    background: linear-gradient(135deg, #d4af37 0%, #aa7c11 100%);
+    color: #000;
+    border-color: transparent;
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+  }
 
   .btn-row {
     display:flex;
     gap:18px;
     justify-content:center;
-    margin-top:55px;
+    margin-top:40px;
     flex-wrap:wrap;
   }
 
+  /* WISH PAGE STYLING */
+  .wish-container {
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 35px;
+    background: linear-gradient(145deg, rgba(255,255,255,0.03), rgba(212,175,55,0.05));
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 25px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+  }
+
+  .cake-box {
+    position: relative;
+    width: 200px;
+    height: 180px;
+    margin: 20px auto 30px;
+    cursor: pointer;
+  }
+
+  .cake-base {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 90px;
+    background: linear-gradient(180deg, #3d2314, #21120a);
+    border-radius: 15px 15px 10px 10px;
+    border: 2px solid #d4af37;
+    box-shadow: inset 0 10px 15px rgba(212, 175, 55, 0.2);
+  }
+
+  .cake-top {
+    position: absolute;
+    bottom: 85px;
+    left: 15px;
+    width: 170px;
+    height: 60px;
+    background: linear-gradient(180deg, #5c351e, #3d2314);
+    border-radius: 12px 12px 0 0;
+    border: 2px solid #d4af37;
+  }
+
+  .icing {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 18px;
+    background: #d4af37;
+    border-radius: 10px 10px 8px 8px;
+    box-shadow: 0 2px 10px rgba(212, 175, 55, 0.5);
+  }
+
+  .candles-group {
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 25px;
+    z-index: 2;
+  }
+
+  .candle-stick {
+    width: 10px;
+    height: 35px;
+    background: repeating-linear-gradient(45deg, #fff, #fff 5px, #d4af37 5px, #d4af37 10px);
+    border-radius: 3px;
+    position: relative;
+  }
+
+  .flame {
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 18px;
+    background: radial-gradient(circle, #fff 20%, #ff8c00 60%, transparent 100%);
+    border-radius: 50% 50% 35% 35%;
+    animation: flicker 0.6s infinite alternate;
+    box-shadow: 0 0 15px #ff8c00, 0 0 25px #ffd700;
+  }
+
+  @keyframes flicker {
+    0% { transform: translateX(-50%) scale(1) rotate(-2deg); }
+    100% { transform: translateX(-50%) scale(1.15) rotate(2deg); }
+  }
+
+  .flame.off { display: none; }
+
+  .smoke {
+    display: none;
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 15px;
+    background: rgba(200, 200, 200, 0.4);
+    border-radius: 50%;
+    animation: riseSmoke 1.5s ease-out forwards;
+  }
+
+  @keyframes riseSmoke {
+    0% { opacity: 0.8; transform: translateX(-50%) translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateX(-50%) translateY(-30px) scale(2.5); }
+  }
+
+  .wish-hint {
+    font-size: 13px;
+    color: #d4af37;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    text-transform: uppercase;
+  }
+
+  .wish-msg {
+    display: none;
+    margin-top: 20px;
+    font-size: 19px;
+    color: #fff;
+    line-height: 1.6;
+    animation: fadeIn 1s ease forwards;
+  }
+
   /* Section headers */
-  .section-title { text-align:center; margin-bottom:50px; }
+  .section-title { text-align:center; margin-bottom:40px; }
   .section-title span { color:#d4af37; font-size:13px; letter-spacing:4px; text-transform:uppercase; }
   .section-title h2 { font-size:45px; margin-top:10px; }
 
-  /* Message */
+  /* Message Card */
   .message-card {
     max-width:850px;
     margin:auto;
@@ -176,7 +348,7 @@
     border-radius:20px;
     text-align:center;
     box-shadow:0 0 50px rgba(0,0,0,0.5);
-    max-height:65vh;
+    max-height:60vh;
     overflow-y:auto;
   }
 
@@ -187,13 +359,13 @@
   .message-card p { color:#ddd; font-size:18px; line-height:1.9; margin:20px 0; white-space:pre-line; }
   .signature { color:#d4af37; font-size:22px; margin-top:30px; }
 
-  /* Attractive 50 Reasons Cards Styling */
+  /* Reasons Cards Styling */
   .reasons-grid {
     display:grid;
     grid-template-columns:repeat(5,1fr);
     gap:18px;
     max-width:1100px;
-    margin:0 auto 45px;
+    margin:0 auto 35px;
     width:100%;
   }
 
@@ -259,9 +431,9 @@
     box-shadow:0 0 20px rgba(212,175,55,0.2);
   }
 
-  .reasons-hint { color:#888; font-size:13px; letter-spacing:1px; margin:-25px 0 35px; text-align:center; }
+  .reasons-hint { color:#888; font-size:13px; letter-spacing:1px; margin:-20px 0 30px; text-align:center; }
 
-  /* OUR STORY / TIMELINE STYLING */
+  /* Timeline */
   .timeline {
     position: relative;
     max-width: 800px;
@@ -324,11 +496,125 @@
   .timeline-content h3 { color: #d4af37; font-size: 20px; margin-bottom: 8px; }
   .timeline-content p { color: #ccc; font-size: 15px; line-height: 1.6; }
 
-  /* Romantic Surprise Section */
+  /* SURPRISE PAGE & 3D GIFT STYLING */
   .surprise-wrap { text-align:center; }
-  .gift { font-size:80px; margin-bottom:25px; animation:bounce 2s infinite; cursor:pointer; }
 
-  @keyframes bounce { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-15px);} }
+  .gift-container {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    margin: 0 auto 30px;
+    cursor: pointer;
+    perspective: 800px;
+  }
+
+  .gift-glow {
+    position: absolute;
+    inset: -20px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.4) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: pulseGlow 2s infinite alternate;
+  }
+
+  @keyframes pulseGlow {
+    0% { transform: scale(0.9); opacity: 0.5; }
+    100% { transform: scale(1.2); opacity: 0.9; }
+  }
+
+  .gift-box {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    animation: floatGift 3s ease-in-out infinite;
+    transform-style: preserve-3d;
+  }
+
+  @keyframes floatGift {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(3deg); }
+  }
+
+  .gift-body {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(135deg, #1f1f1f 0%, #0a0a0a 100%);
+    border: 2px solid #d4af37;
+    border-radius: 12px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.8), inset 0 0 15px rgba(212,175,55,0.2);
+    overflow: hidden;
+  }
+
+  .gift-body::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 24px;
+    height: 100%;
+    background: linear-gradient(135deg, #d4af37, #aa7c11);
+    transform: translateX(-50%);
+    box-shadow: 0 0 8px rgba(212,175,55,0.5);
+  }
+
+  .gift-lid {
+    position: absolute;
+    top: 15px;
+    left: -5px;
+    width: 150px;
+    height: 32px;
+    background: linear-gradient(135deg, #2a2a2a 0%, #111 100%);
+    border: 2px solid #d4af37;
+    border-radius: 8px;
+    z-index: 2;
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-origin: left top;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+  }
+
+  .gift-lid::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 24px;
+    height: 100%;
+    background: linear-gradient(135deg, #d4af37, #aa7c11);
+    transform: translateX(-50%);
+  }
+
+  .gift-bow {
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 20px;
+    z-index: 3;
+  }
+
+  .gift-bow::before, .gift-bow::after {
+    content: '';
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    border: 3px solid #d4af37;
+    border-radius: 50% 50% 0 50%;
+    background: rgba(212,175,55,0.2);
+  }
+
+  .gift-bow::before { left: 0; transform: rotate(45deg); }
+  .gift-bow::after { right: 0; transform: rotate(-45deg) scaleX(-1); }
+
+  /* Opened Gift State */
+  .gift-container.open .gift-lid {
+    transform: rotate(-110deg) translateY(-10px);
+  }
+
+  .gift-container.open .gift-box {
+    animation: none;
+  }
 
   #secret {
     display:none;
@@ -382,7 +668,7 @@
     margin: 20px 0 15px;
   }
 
-  /* Page dots */
+  /* Page navigation dots */
   .page-dots {
     position:fixed;
     bottom:22px;
@@ -434,7 +720,6 @@
 
   @media (max-width:700px) {
     nav { padding:16px 5%; }
-    .nav-links a { margin-left:10px; font-size:11px; }
     .reasons-grid { grid-template-columns:repeat(2,1fr); }
     .message-card { padding:28px 20px; }
     .section-title h2 { font-size:32px; }
@@ -454,13 +739,6 @@
 
   <nav>
     <div class="logo">F.K 🖤</div>
-    <div class="nav-links">
-      <a data-page="home" onclick="goToPage('home')">Home</a>
-      <a data-page="message" onclick="goToPage('message')">Letter</a>
-      <a data-page="reasons" onclick="goToPage('reasons')">Reasons</a>
-      <a data-page="story" onclick="goToPage('story')">Our Story</a>
-      <a data-page="surprise" onclick="goToPage('surprise')">Surprise</a>
-    </div>
   </nav>
 
   <div class="page-wrapper">
@@ -468,17 +746,93 @@
     <!-- PAGE 1: HOME -->
     <section class="page hero active" id="page-home">
       <div class="hero-content">
+        
+        <div class="teddy-container">
+          <span class="balloon left">🎈</span>
+          <span class="balloon right">✨</span>
+          <svg class="cute-teddy" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="26" fill="#D2A679"/>
+            <circle cx="50" cy="50" r="16" fill="#F3D8C2"/>
+            <circle cx="150" cy="50" r="26" fill="#D2A679"/>
+            <circle cx="150" cy="50" r="16" fill="#F3D8C2"/>
+            <ellipse cx="65" cy="175" rx="20" ry="14" fill="#B8860B"/>
+            <ellipse cx="135" cy="175" rx="20" ry="14" fill="#B8860B"/>
+            <ellipse cx="100" cy="135" rx="50" ry="42" fill="#D2A679"/>
+            <ellipse cx="100" cy="135" rx="32" ry="26" fill="#F3D8C2"/>
+            <circle cx="55" cy="125" r="18" fill="#D2A679"/>
+            <circle cx="145" cy="125" r="18" fill="#D2A679"/>
+            <path d="M100 135 C100 135, 82 118, 82 106 C82 98, 90 92, 98 98 C100 101, 100 101, 102 98 C110 92, 118 98, 118 106 C118 118, 100 135, 100 135 Z" fill="#D4AF37"/>
+            <circle cx="100" cy="80" r="46" fill="#D2A679"/>
+            <ellipse cx="100" cy="92" rx="22" ry="16" fill="#F3D8C2"/>
+            <ellipse cx="100" cy="84" rx="8" ry="6" fill="#3D2314"/>
+            <path d="M93 92 Q100 98 107 92" stroke="#3D2314" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+            <circle cx="80" cy="74" r="6" fill="#222"/>
+            <circle cx="120" cy="74" r="6" fill="#222"/>
+            <circle cx="78" cy="72" r="2.5" fill="#FFF"/>
+            <circle cx="118" cy="72" r="2.5" fill="#FFF"/>
+            <circle cx="70" cy="85" r="7" fill="#FF99A8" opacity="0.6"/>
+            <circle cx="130" cy="85" r="7" fill="#FF99A8" opacity="0.6"/>
+          </svg>
+        </div>
+
         <div class="small-title">To My Pasandeeda Mard</div>
-        <h1>Furqan Khan</h1>
-        <h2>Happy Birthday, My Love <span class="heart">♥</span></h2>
+        <h1>It's Your Special Day! ✨</h1>
+        <h2>Happy Birthday, Furqan Khan <span class="heart">♥</span></h2>
         <p style="color:#888;">A little corner of the internet made specially for you.</p>
         <div class="btn-row">
-          <button class="gold-btn" onclick="goToPage('message')">Open Your Birthday Letter →</button>
+          <button class="gold-btn" onclick="goToPage('wish')">Start Your Celebration 🎂</button>
         </div>
       </div>
     </section>
 
-    <!-- PAGE 2: MESSAGE -->
+    <!-- PAGE 2: WISH -->
+    <section class="page hero" id="page-wish">
+      <div class="hero-content">
+        <div class="small-title">Interactive Celebration ✨</div>
+        <h1 style="margin-bottom: 15px;">Make A Special Wish ✨</h1>
+
+        <div class="wish-container">
+          
+          <div class="cake-box" onclick="blowCandles()">
+            <div class="candles-group">
+              <div class="candle-stick">
+                <div class="flame"></div>
+                <div class="smoke"></div>
+              </div>
+              <div class="candle-stick">
+                <div class="flame"></div>
+                <div class="smoke"></div>
+              </div>
+              <div class="candle-stick">
+                <div class="flame"></div>
+                <div class="smoke"></div>
+              </div>
+            </div>
+            
+            <div class="cake-top">
+              <div class="icing"></div>
+            </div>
+            <div class="cake-base">
+              <div class="icing"></div>
+            </div>
+          </div>
+
+          <div class="wish-hint" id="wishHint">Tap on the cake to blow out candles! 🕯️✨</div>
+          
+          <div class="wish-msg" id="wishMsg">
+            "May all your silent prayers, secret dreams, and sweetest desires come true this year! <br>You deserve all the happiness in this world, my love. ♥"
+          </div>
+
+        </div>
+
+        <div class="btn-row">
+          <button class="gold-btn ghost" onclick="goToPage('home')">← Back</button>
+          <button class="gold-btn" onclick="goToPage('message')">See The Letter 💌</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 3: MESSAGE -->
     <section class="page" id="page-message">
       <div class="section-title">
         <span>A Letter For You</span>
@@ -504,14 +858,14 @@ THE MOON IS PRETTY ISN'T?❤️🌙
 𝑴𝒊𝒍𝒍𝒊𝒐𝒏𝒔 𝒑𝒓𝒐𝒃𝒍𝒆𝒎𝒔 𝒐𝒏𝒆 𝒔𝒐𝒍𝒖𝒕𝒊𝒐𝒏> 𝐬𝐢𝐫𝐟 𝐚𝐩:)🤍🎀
                             حسرت صرف آپ کی ہے
 پھر آپکے بعد، آپ جیسا، آپ کے سوا، آپ کی جگہ اور کوئی نہیں چاہیے ❤️🫣
-𝑹𝒆𝒂𝒍𝒊𝒛𝒊𝒏𝒈 𝑰 𝒂𝒍𝒓𝒆𝒂𝒅𝒚 𝒘𝒐𝒏 𝒕𝒉𝒆 𝒍𝒐𝒕𝒕𝒆𝒓𝒚....
+R𝒆𝒂𝒍𝒊𝒛𝒊𝒏𝒈 𝑰 𝒂𝒍𝒓𝒆𝒂𝒅𝒚 𝒘𝒐𝒏 𝒕𝒉𝒆 𝒍𝒐𝒕𝒕𝒆𝒓𝒚....
 𝑩𝒆𝒄𝒂𝒖𝒔𝒆 𝑰 𝒉𝒂𝒗𝒆 𝒕𝒉𝒆 𝒎𝒐𝒔𝒕 𝒂𝒎𝒂𝒛𝒊𝒏𝒈 𝒎𝒂𝒏 𝒊𝒏 𝒕𝒉𝒆 𝒘𝒐𝒓𝒍𝒅 ♥️🌸
 میں آپ سے کیسےکہوں آپ ہی علاج ہیں میری اداسی کا ♡
 𝒀𝑶𝑼'𝑹𝑬 𝑶𝑵𝑳𝒀 𝑴𝑰𝑵𝑬 𝑷𝑹𝑶𝑹𝑬𝑹𝑻𝒀 🤍🫢🫵
 آپ کا کہہ دینا "آپکا ہوں" میرے لیے دنیا کا خوبصورت ترین لفظ ہے 🫵🥹💗</p>
 
-        <p>میری جاناں، آپ ہی میری زندگی کی سب سے خوبصورت خوشی ہیں۔ آپ کا مسکراتا چہرہ میرے لیے کسی ستارے سے کم نہیں۔ آپ کو اپنی زندگی میں پا کر میں خود کو بہت خوش قسمت سمجھتی ہوں۔
-میرا پیارا، میرا سکون، میری جان ♥️
+        <p>جاناں، آپ ہی میری زندگی کی سب سے خوبصورت خوشی ہیں۔ آپ کا مسکراتا چہرہ میرے لیے کسی ستارے سے کم نہیں۔ آپ کو اپنی زندگی میں پا کر میں خود کو بہت خوش قسمت سمجھتی ہوں۔
+میرا پیار، میرا سکون، میری جان ♥️
 لو یو اینا سارا کاکیییی❤️🌍🥺💕
 مائی لائف لائن❤️🌍🥺🙈(◠‿◠)♡</p>
 
@@ -523,12 +877,12 @@ THE MOON IS PRETTY ISN'T?❤️🌙
       </div>
 
       <div class="btn-row">
-        <button class="gold-btn ghost" onclick="goToPage('home')">← Back</button>
-        <button class="gold-btn" onclick="goToPage('reasons')">50 Reasons →</button>
+        <button class="gold-btn ghost" onclick="goToPage('wish')">← Back</button>
+        <button class="gold-btn" onclick="goToPage('reasons')">Reasons Why I Love You →</button>
       </div>
     </section>
 
-    <!-- PAGE 3: REASONS -->
+    <!-- PAGE 4: REASONS -->
     <section class="page" id="page-reasons">
       <div class="section-title">
         <span>50 Reasons</span>
@@ -544,7 +898,7 @@ THE MOON IS PRETTY ISN'T?❤️🌙
       </div>
     </section>
 
-    <!-- PAGE 4: OUR STORY (REPLACED MEMORIES) -->
+    <!-- PAGE 5: OUR STORY -->
     <section class="page" id="page-story">
       <div class="section-title">
         <span>Journey Of Us</span>
@@ -584,7 +938,7 @@ THE MOON IS PRETTY ISN'T?❤️🌙
       </div>
     </section>
 
-    <!-- PAGE 5: SURPRISE -->
+    <!-- PAGE 6: SURPRISE (UPDATED ATTRACTIVE GIFT) -->
     <section class="page" id="page-surprise">
       <div class="section-title">
         <span>One Last Thing</span>
@@ -592,8 +946,18 @@ THE MOON IS PRETTY ISN'T?❤️🌙
       </div>
 
       <div class="surprise-wrap">
-        <div class="gift" onclick="showSurprise()">🎁</div>
-        <button class="gold-btn" onclick="showSurprise()">Open Your Surprise ✨</button>
+        
+        <!-- 3D Gift Box Component -->
+        <div class="gift-container" id="giftContainer" onclick="showSurprise()">
+          <div class="gift-glow"></div>
+          <div class="gift-box">
+            <div class="gift-bow"></div>
+            <div class="gift-lid"></div>
+            <div class="gift-body"></div>
+          </div>
+        </div>
+
+        <button class="gold-btn" onclick="showSurprise()">Tap To Open Gift ✨</button>
 
         <div id="secret">
           <div class="surprise-title">✨ Special Words For My World ✨</div>
@@ -611,7 +975,7 @@ THE MOON IS PRETTY ISN'T?❤️🌙
           <!-- POETRY BLOCK 2 -->
           <div class="poetry-container">
             <p class="poetry-line">Suno, Apki hansi meri sab se badi khushi hai, 🥰</p>
-            <p class="poetry-line">Aoka sath hi meri zindagi ki sab se khoobsurat aashiqi hai... 🕊️✨</p>
+            <p class="poetry-line">Apka sath hi meri zindagi ki sab se khoobsurat aashiqi hai... 🕊️✨</p>
             <p class="poetry-line">Har dua mein sirf apka naam maanga hai, 🙏🖤</p>
             <p class="poetry-line">Rab se sirf apka he sath maanga hai. 💍👑</p>
           </div>
@@ -621,7 +985,7 @@ THE MOON IS PRETTY ISN'T?❤️🌙
           </div>
 
           <p style="color:#ccc; font-size:16px; line-height: 1.8;">
-            Har din tumhare sath ek haseen khwab jaisa lagta hai. Tum meri zindagi ka wo sab se haseen hissa ho jise main kabhi khona nahi chahti. Tum mere paas ho to mujhe kisi aur cheez ki khwahish nahi rehti. 🌸🫀🥹
+            Har din apky sath ek haseen khwab jaisa lagta hai. Ap meri zindagi ka wo sab se haseen hissa ho jise main kabhi khona nahi chahti. Ap mere paas ho to mujhe kisi aur cheez ki khwahish nahi rehti. 🌸🫀🥹
           </p>
 
           <p style="color:#d4af37; font-size:22px; font-weight:bold; margin-top:25px;">
@@ -643,17 +1007,13 @@ THE MOON IS PRETTY ISN'T?❤️🌙
   <footer>Made with <span>♥</span> specially for <span>Furqan Khan</span></footer>
 
   <script>
-    const pages = ["home","message","reasons","story","surprise"];
+    const pages = ["home","wish","message","reasons","story","surprise"];
 
     function goToPage(id) {
       pages.forEach(p => {
         document.getElementById("page-" + p).classList.remove("active");
       });
       document.getElementById("page-" + id).classList.add("active");
-
-      document.querySelectorAll(".nav-links a").forEach(a => {
-        a.classList.toggle("active", a.dataset.page === id);
-      });
 
       document.querySelectorAll(".dot").forEach(d => {
         d.classList.toggle("active", d.dataset.page === id);
@@ -671,7 +1031,20 @@ THE MOON IS PRETTY ISN'T?❤️🌙
       dot.onclick = () => goToPage(p);
       dotsWrap.appendChild(dot);
     });
-    document.querySelector('.nav-links a[data-page="home"]').classList.add("active");
+
+    /* Wish Page Blow Candles Feature */
+    function blowCandles() {
+      const flames = document.querySelectorAll('.flame');
+      const smokes = document.querySelectorAll('.smoke');
+      
+      flames.forEach(f => f.classList.add('off'));
+      smokes.forEach(s => s.style.display = 'block');
+      
+      document.getElementById('wishHint').innerText = "Wish Sent to the Stars! ✨🎉";
+      document.getElementById('wishMsg').style.display = "block";
+      
+      for (let i = 0; i < 25; i++) createHeart();
+    }
 
     // 50 reasons data
     const reasons = [
@@ -746,11 +1119,17 @@ THE MOON IS PRETTY ISN'T?❤️🌙
       grid.appendChild(card);
     });
 
-    /* Surprise */
+    /* Surprise Gift Animation & Reveal */
     function showSurprise() {
+      const giftContainer = document.getElementById("giftContainer");
       const secret = document.getElementById("secret");
-      secret.style.display = "block";
-      for (let i = 0; i < 35; i++) createHeart();
+
+      giftContainer.classList.add("open");
+
+      setTimeout(() => {
+        secret.style.display = "block";
+        for (let i = 0; i < 35; i++) createHeart();
+      }, 300);
     }
 
     /* Floating hearts */
