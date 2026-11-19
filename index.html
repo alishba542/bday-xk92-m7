@@ -80,40 +80,6 @@
     to { opacity:1; transform:translateY(0); }
   }
 
-  /* Cute Teddy Bear Styling */
-  .teddy-container {
-    position: relative;
-    width: 160px;
-    height: 160px;
-    margin: 0 auto 15px;
-    animation: floatTeddy 3s ease-in-out infinite;
-  }
-
-  @keyframes floatTeddy {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-10px) rotate(2deg); }
-  }
-
-  .cute-teddy {
-    width: 100%;
-    height: 100%;
-    filter: drop-shadow(0 10px 20px rgba(212,175,55,0.3));
-  }
-
-  /* Floating Balloons near Teddy */
-  .balloon {
-    position: absolute;
-    font-size: 26px;
-    animation: floatBalloon 2.5s ease-in-out infinite alternate;
-  }
-  .balloon.left { top: -5px; left: -15px; animation-delay: 0.2s; }
-  .balloon.right { top: -10px; right: -15px; animation-delay: 0.7s; }
-
-  @keyframes floatBalloon {
-    0% { transform: translateY(0) rotate(-5deg); }
-    100% { transform: translateY(-8px) rotate(8deg); }
-  }
-
   .hero { text-align:center; min-height:100vh; padding-top:80px; }
   .hero-content { max-width:900px; margin:auto; }
 
@@ -136,6 +102,9 @@
     background-size:200%;
     font-weight: bold;
   }
+
+  /* Front page: big name like the old design */
+  #page-home h1 { font-size:clamp(44px, 9vw, 100px); }
 
   @keyframes shine { 0%{background-position:0%;} 100%{background-position:200%;} }
 
@@ -746,41 +715,13 @@
     <!-- PAGE 1: HOME -->
     <section class="page hero active" id="page-home">
       <div class="hero-content">
-        
-        <div class="teddy-container">
-          <span class="balloon left">🎈</span>
-          <span class="balloon right">✨</span>
-          <svg class="cute-teddy" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="26" fill="#D2A679"/>
-            <circle cx="50" cy="50" r="16" fill="#F3D8C2"/>
-            <circle cx="150" cy="50" r="26" fill="#D2A679"/>
-            <circle cx="150" cy="50" r="16" fill="#F3D8C2"/>
-            <ellipse cx="65" cy="175" rx="20" ry="14" fill="#B8860B"/>
-            <ellipse cx="135" cy="175" rx="20" ry="14" fill="#B8860B"/>
-            <ellipse cx="100" cy="135" rx="50" ry="42" fill="#D2A679"/>
-            <ellipse cx="100" cy="135" rx="32" ry="26" fill="#F3D8C2"/>
-            <circle cx="55" cy="125" r="18" fill="#D2A679"/>
-            <circle cx="145" cy="125" r="18" fill="#D2A679"/>
-            <path d="M100 135 C100 135, 82 118, 82 106 C82 98, 90 92, 98 98 C100 101, 100 101, 102 98 C110 92, 118 98, 118 106 C118 118, 100 135, 100 135 Z" fill="#D4AF37"/>
-            <circle cx="100" cy="80" r="46" fill="#D2A679"/>
-            <ellipse cx="100" cy="92" rx="22" ry="16" fill="#F3D8C2"/>
-            <ellipse cx="100" cy="84" rx="8" ry="6" fill="#3D2314"/>
-            <path d="M93 92 Q100 98 107 92" stroke="#3D2314" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-            <circle cx="80" cy="74" r="6" fill="#222"/>
-            <circle cx="120" cy="74" r="6" fill="#222"/>
-            <circle cx="78" cy="72" r="2.5" fill="#FFF"/>
-            <circle cx="118" cy="72" r="2.5" fill="#FFF"/>
-            <circle cx="70" cy="85" r="7" fill="#FF99A8" opacity="0.6"/>
-            <circle cx="130" cy="85" r="7" fill="#FF99A8" opacity="0.6"/>
-          </svg>
-        </div>
 
         <div class="small-title">To My Pasandeeda Mard</div>
-        <h1>It's Your Special Day! ✨</h1>
-        <h2>Happy Birthday, Furqan Khan <span class="heart">♥</span></h2>
+        <h1>Furqan Khan</h1>
+        <h2>Happy Birthday, My Love <span class="heart">♥</span></h2>
         <p style="color:#888;">A little corner of the internet made specially for you.</p>
         <div class="btn-row">
-          <button class="gold-btn" onclick="goToPage('wish')">Start Your Celebration 🎂</button>
+          <button class="gold-btn ghost" onclick="goToPage('wish')">Open Your Birthday Letter →</button>
         </div>
       </div>
     </section>
